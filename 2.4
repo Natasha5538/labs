@@ -1,0 +1,29 @@
+import os
+os.system('python -m pip install colorama')
+import csv
+from colorama import init
+from colorama import Back
+init(autoreset=True)
+w=0
+p=0
+t=0
+with open('books.csv', "r") as csvfile:
+    table = csv.reader(csvfile, delimiter=";")
+    for row in list(table):
+        if t>0:
+            if int(row[5][:4])==16:
+                w+=1
+            else:
+                p+=1
+        t+=1
+print(w/(w+p),p/(w+p))
+print(Back.GREEN + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
+print(Back.GREEN + '   '+Back.RED + '   ')
