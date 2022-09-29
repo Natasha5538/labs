@@ -1,0 +1,41 @@
+asthma=False
+infection=False
+c=10
+cfull=200
+one=[15,25,15]
+two=[15,15,20,20,20]
+three=[25,20]
+name1=['н','о','ф']
+name2=['п','б','а','к','р']
+name3=['в','т']
+part1=[]
+x = zip(one,name1)
+y = zip(two,name2)
+z = zip(three,name3)
+x1 = sorted(x, key=lambda tup: tup[0],reverse=True)
+y1 = sorted(y, key=lambda tup: tup[0],reverse=True)
+z1 = sorted(z, key=lambda tup: tup[0],reverse=True)
+c1=z1[0][0]+z1[1][0]+x1[0][0]
+c2=z1[0][0]+x1[0][0]+x1[1][0]+x1[2][0]
+c3=z1[0][0]+y1[0][0]+y1[1][0]
+c4=z1[0][0]+y1[0][0]+x1[1][0]+x1[0][0]
+c5=y1[0][0]+y1[1][0]+x1[0][0]+x1[1][0]+x1[2][0]
+c6=y1[0][0]+y1[1][0]+y1[2][0]+x1[0][0]
+print(c1,c2,c3,"\n")
+print(c4,c5,c6)
+if c1>=100:
+    part1+=z1[0][1]+z1[1][1]+x1[0][1]
+elif c2>=100:
+    part1+=z1[0][1]+x1[0][1]+x1[1][1]+x1[2][1]+x1[3][1]
+elif c3>=100:
+    part1+=z1[0][1]+y1[0][1]+y1[1][1]
+elif c4>=100:
+    part1+=z1[0][1]+y1[0][1]+x1[1][1]+x1[0][1]
+elif c5>=100:
+    part1+=y1[0][1]+y1[1][1]+x1[0][1]+x1[1][1]+x1[2][1]
+elif c6>=100:
+    part1+=y1[0][1]+y1[1][1]+y1[2][1]+x1[0][1]
+if len(part1)==0:
+    print("\n",'NO')
+else:
+    print(part1)
