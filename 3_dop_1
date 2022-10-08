@@ -1,0 +1,53 @@
+asthma=False
+infection=False
+c=10
+cfull=190
+one=[15,25,15]
+two=[15,15,20,20,20]
+three=[25,20]
+name1=['н','о','ф']
+name2=['п','б','а','к','р']
+name3=['в','т']
+maxx=0
+
+x = zip(one,name1)
+y = zip(two,name2)
+z = zip(three,name3)
+x1 = sorted(x, key=lambda tup: tup[0],reverse=True)
+y1 = sorted(y, key=lambda tup: tup[0],reverse=True)
+z1 = sorted(z, key=lambda tup: tup[0],reverse=True)
+
+c1=z1[0][0]+z1[1][0]+x1[0][0]+c
+c2=z1[0][0]+y1[0][0]+x1[0][0]+x1[1][0]+c
+c3=y1[0][0]+y1[1][0]+x1[0][0]+x1[1][0]+x1[2][0]+c
+
+if c1>=maxx:
+    maxx=c1
+
+if c2>=maxx:
+    maxx=c2
+
+if c3>= maxx:
+    maxx=c3
+
+print (maxx)
+
+if c1==maxx:
+    R1=c1-(y[0][0]+y1[1][0]+y1[2][0]+y1[3][0]+y1[4][0]+x1[1][0]+x1[2][0])
+    print('[в] [в] [в]')
+    print('[т] [т] [т]')
+    print('[о]        ')
+    print('Итоговые очки выживания:',R1)
+if c2==maxx:
+    R2=c2-(z1[1][0]+y1[1][0]+y1[2][0]+y1[3][0]+y1[4][0]+x1[2][0])
+    print('[в] [в] [в]')
+    print('[к] [к] [н]')
+    print('[о]        ')
+    print('Итоговые очки выживания:',R2)
+
+if c3==maxx:
+    R3=c3-(y1[2][0]+y1[3][0]+y1[4][0]+z1[0][0]+z1[1][0])
+    print('[а] [а] [о]')
+    print('[к] [к] [н]')
+    print('[ф]        ')
+    print('Итоговые очки выживания:',R3)
