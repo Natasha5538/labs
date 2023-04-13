@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Портфолио</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+  body {
+   font-family: Impact;
+   margin: 10;
+   padding: 0;
+  }
+
+  header {
+   background-color: #125;
+   color: #fff;
+   padding: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+  }
+
+  html {
+   background-image: url(app/itmo.jpg);
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-attachment: fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+
+ }
+
+  header a {
+   color: #fff;
+   text-decoration: none;
+   font-size: 20px;
+   padding: 10px;
+  }
+
+  section {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   padding: 5px;
+  }
+
+ </style>
+</head>
+<body>
+ <header>
+  <a>Портфолио</a>
+ </header>
+<section>
+    <form action="{{ url_for('index')}}" method="post" >
+       <p>
+          <p>
+          Введите место работы или стаж в месяцах
+          </p>
+          <p>
+             <input type="text" name="search" value="" required>
+          </p>
+          <p>
+              <input type="submit" value="Поиск" name="searchBtn"></input>
+          </p>
+       </p>
+
+    </form>
+    <form action="{{ url_for('index')}}" method="post" >
+       <button value="All List" name="all">Вывести полный список</button>
+       <button value="Clear" name="clear">Очистить все</button>
+    </form>
+
+</section>
+</body>
+</html>
