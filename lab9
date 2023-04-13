@@ -1,0 +1,59 @@
+import sqlalchemy as db
+from flask import Flask, url_for, render_template, request, redirect
+
+app = Flask(__name__)
+
+def searchdd(serchText):
+    select_query = db.select(jobs).where(jobs.columns.Company == serchText)
+    select_result = connection.execute((select_query))
+    searchJobs =select_result.fetchall()
+    if len(searchJobs) == 0:
+        select_query = db.select(jobs).where(jobs.columns.Term == serchText)
+        select_result = connection.execute((select_query))
+        searchJobs = select_result.fetchall()
+    return searchJobs
+
+try:
+    engine = db.create_engine('mysql+pymysql://root:lobas@localhost:3306/MyDB5538')
+    connection = engine.connect()
+    print("Connecting is correct!")
+except Exception as ex:
+    print("Fail connecting...")
+    print(ex)
+
+metadata = db.MetaData()
+jobs = db.Table('jobs', metadata,
+                 db.Column('Company', db.Text),
+                 db.Column('Term', db.Text))
+
+
+metadata.create_all(engine)
+
+insertion_query = jobs.insert().values([
+    {"Company" : "Apple", "Term" : 12},
+    {"Company" : "Ford", "Term" : 5},
+    {"Company" : "Samsung", "Term" : 7},
+    {"Company" : "SpaceX", "Term" : 3},
+    {"Company" : "RosCosmos", "Term" : 18},
+])
+
+selJ = db.select(jobs)
+selJo = connection.execute(selJ)
+Jobss = selJo.fetchall()
+
+@app.route('/', methods =["GET", "POST"])
+def index():
+    if request.method == "POST":
+        if request.form.get('clear') =='Clear':
+            d = searchdd("s")
+            return render_template('index.html', Jobss=d, len=len(d))
+        elif request.form.get('all') == 'All List':
+            render_template('index.html', Jobss = Jobss, len = len(Jobss))
+        elif request.form.get('searchBtn') == 'Search':
+            a = request.form.get("search")
+            d = searchdd(a)
+            return render_template('index.html', Jobss = d, len = len(d))
+    return render_template('index.html', Jobss = Jobss, len = len(Jobss))
+
+if __name__ == "__main__":
+    app.run(debug=True)
